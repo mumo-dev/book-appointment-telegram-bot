@@ -17,24 +17,28 @@ router.get('/', function(req, res, next) {
 
 router.post('/webhooks', function(req, res){
     const data = req.body;
-    console.log("Works")
-    // console.log(data.queryResult.parameters['date']);
-    // res.json(JSON.parse(data));
-    /*
-    const date = data.queryResult.parameters.date;
-    const time = data.queryResult.parameters.time;
-
-    console.log("This url has been called");
+   
+    const date = data.queryResult.parameters['date'];
+    const time = data.queryResult.parameters['time'];
 
     const appointments = new Appointment({
-      time: time,
-      date: time
+      time,
+      date
     });
-
+    
     appointments.save().then(response=>{
         console.log(response);
         res.status(200).json({
-          fulfillmentText:" Appointment made",
+          fulfillmentText:"Got it. I have your appointment scheduled on 2018-11-23 at 12:00:00. See you soon. Good-bye.",
+          fulfillmentMessages: [
+            {
+              "text": {
+                "text": [
+                  "Got it. I have your appointment scheduled on 2018-11-23 at 12:00:00. See you soon. Good-bye."
+                ]
+              }
+            }
+          ],
           source:""
         })
     })
@@ -43,7 +47,7 @@ router.post('/webhooks', function(req, res){
         error: err
       })
     })
-    */
+    
 });
 
 
