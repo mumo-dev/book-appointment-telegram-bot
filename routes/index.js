@@ -6,12 +6,12 @@ var Appointment = require('../models/appointments');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   const data = null;
-  // Appointment.find({}, function(err, result){
-  //   if(err) throw err;
-  //   if(result){
-  //       data = result;
-  //   }
-  // });
+  Appointment.find({}, function(err, result){
+    if(err) throw err;
+    if(result){
+        data = result;
+    }
+  });
   res.render('index', { title: 'Express'});
 });
 
