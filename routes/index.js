@@ -5,14 +5,15 @@ var Appointment = require('../models/appointments');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  const data = null;
+  let data = null;
   Appointment.find({}, function(err, result){
     if(err) throw err;
     if(result){
         data = result;
     }
   });
-  res.render('index', { title: 'Express'});
+  console.log(data);
+  res.render('index', { title: 'Express', appointments: data});
 });
 
 router.post('/webhooks', function(req, res){
