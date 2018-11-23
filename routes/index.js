@@ -25,6 +25,7 @@ router.post('/webhooks', function(req, res){
       time,
       date
     });
+    console.log(data);
     
     appointments.save().then(response=>{
         console.log(response);
