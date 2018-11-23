@@ -4,52 +4,50 @@ var router = express.Router();
 var Appointment = require('../models/appointments');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   let data = null;
-  Appointment.find({}, function(err, result){
-    if(err) throw err;
-    if(result){
-        data = result;
-    }
+  Appointment.find().exec(function(err, result){
+    if(err) return next(err);
+    res.render('index', { title: 'Express', appointments: result });
   });
   console.log(data);
-  res.render('index', { title: 'Express', appointments: data});
+ 
 });
 
-router.post('/webhooks', function(req, res){
-    const data = req.body;
-   
-    const date = data.queryResult.parameters['date'];
-    const time = data.queryResult.parameters['time'];
+router.post('/webhooks', function (req, res) {
+  const data = req.body;
 
-    const appointments = new Appointment({
-      time,
-      date
-    });
-    console.log(data);
-    
-    appointments.save().then(response=>{
-        console.log(response);
-        res.status(200).json({
-          fulfillmentText:"Got it. I have your appointment scheduled on 2018-11-23 at 12:00:00. See you soon. Good-bye.",
-          fulfillmentMessages: [
-            {
-              "text": {
-                "text": [
-                  "Got it. I have your appointment scheduled on 2018-11-23 at 12:00:00. See you soon. Good-bye."
-                ]
-              }
-            }
-          ],
-          source:""
-        })
+  const date = data.queryResult.parameters['date'];
+  const time = data.queryResult.parameters['time'];
+
+  const appointments = new Appointment({
+    time,
+    date
+  });
+  console.log(data);
+
+  appointments.save().then(response => {
+    console.log(response);
+    res.status(200).json({
+      fulfillmentText: "Got it. I have your appointment scheduled on 2018-11-23 at 12:00:00. See you soon. Good-bye.",
+      fulfillmentMessages: [
+        {
+          "text": {
+            "text": [
+              "Got it. I have your appointment scheduled on 2018-11-23 at 12:00:00. See you soon. Good-bye."
+            ]
+          }
+        }
+      ],
+      source: ""
     })
-    .catch(err=>{
+  })
+    .catch(err => {
       res.status(500).json({
         error: err
       })
     })
-    
+
 });
 
 
