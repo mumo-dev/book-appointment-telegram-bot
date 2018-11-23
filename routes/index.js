@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 router.post('/webhooks', function(req, res){
     const data = req.body;
     
-    console.log(data);
+    console.log(data.queryResult.parameters);
     /*
     const date = data.queryResult.parameters.date;
     const time = data.queryResult.parameters.time;
