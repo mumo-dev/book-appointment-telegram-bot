@@ -20,12 +20,15 @@ router.post('/webhooks', function(req, res){
     const date = data.queryResult.parameters.date;
     const time = data.queryResult.parameters.time;
 
+    console.log("This url has been called");
+
     const appointments = new Appointment({
       time: time,
       date: time
     });
 
     appointments.save().then(response=>{
+      console.log(response);
         res.status(200).json({
           fulfillmentText:" Appointment made",
           source:""
