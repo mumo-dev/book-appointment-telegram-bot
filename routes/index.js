@@ -16,9 +16,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/webhooks', function(req, res){
-    const data = req.body;
+    const data = JSON.parse(req.body);
     
-    console.log(data.queryResult.parameters);
+    console.log(data.queryResult);
     /*
     const date = data.queryResult.parameters.date;
     const time = data.queryResult.parameters.time;
