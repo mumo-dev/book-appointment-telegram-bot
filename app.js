@@ -11,8 +11,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
-// const url =`mongodb://${name}:${password}@ds115154.mlab.com:15154/doctor-zil-app`;
-var url = "mongodb://localhost/doctor"
+const url =`mongodb://${name}:${password}@ds115154.mlab.com:15154/doctor-zil-app`;
+// var url = "mongodb://localhost/doctor"
 // view engine setup
 
 mongoose.connect(url);
