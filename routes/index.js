@@ -6,13 +6,13 @@ var Appointment = require('../models/appointments');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   const data = null;
-  Appointment.find({}, function(err, result){
-    if(err) throw err;
-    if(result){
-        data = result;
-    }
-  });
-  res.render('index', { title: 'Express', appointments: data });
+  // Appointment.find({}, function(err, result){
+  //   if(err) throw err;
+  //   if(result){
+  //       data = result;
+  //   }
+  // });
+  res.render('index', { title: 'Express'});
 });
 
 router.post('/webhooks', function(req, res){
@@ -28,7 +28,7 @@ router.post('/webhooks', function(req, res){
     });
 
     appointments.save().then(response=>{
-      console.log(response);
+        console.log(response);
         res.status(200).json({
           fulfillmentText:" Appointment made",
           source:""
