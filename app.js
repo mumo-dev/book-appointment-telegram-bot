@@ -1,5 +1,4 @@
-var name ="db-user1";
-var password ="db-user1";
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -11,8 +10,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
-const url =`mongodb://${name}:${password}@ds115154.mlab.com:15154/doctor-zil-app`;
-// var url = "mongodb://localhost/doctor"
+
+var url = "mongodb://localhost/doctor"
 // view engine setup
 
 mongoose.connect(url);

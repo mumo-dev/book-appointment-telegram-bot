@@ -29,12 +29,12 @@ router.post('/webhooks', function (req, res) {
   appointments.save().then(response => {
     console.log(response);
     res.status(200).json({
-      fulfillmentText: "Got it. I have your appointment scheduled on 2018-11-23 at 12:00:00. See you soon. Good-bye.",
+      fulfillmentText: `Got it. I have your appointment scheduled on ${date}  at ${time}. See you soon. Good-bye.`,
       fulfillmentMessages: [
         {
           "text": {
             "text": [
-              "Got it. I have your appointment scheduled on 2018-11-23 at 12:00:00. See you soon. Good-bye."
+              `Got it. I have your appointment scheduled on ${date}  at ${time}. See you soon. Good-bye.`
             ]
           }
         }
